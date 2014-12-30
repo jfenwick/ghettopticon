@@ -71,6 +71,7 @@ void loop() {
     // if the starting token start over counter
     if (b == 255) {
       servonum = 0;
+      Serial.println("servonum = 0");
     }
     
     // otherwise put servo position in buffer
@@ -78,7 +79,7 @@ void loop() {
       servoBuf[servonum] = b;
       servonum++;
       
-      if (servonum == BUFSIZE - 1) {
+      if (servonum == BUFSIZE) {
         for (int i=0; i<BUFSIZE; i++) {
           uint16_t pulselen = map(b, 0, 180, SERVOMIN, SERVOMAX);
           pwm.setPWM(i, 0, pulselen);
