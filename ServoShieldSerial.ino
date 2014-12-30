@@ -34,7 +34,10 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // our servo # counter
 uint8_t servonum = 0;
 
-int pos;
+#define BUFSIZE 3
+
+//int pos;
+volatile byte servoBuf[BUFSIZE];
 
 void setup() {
   Serial.begin(9600);
@@ -60,14 +63,27 @@ void setServoPulse(uint8_t n, double pulse) {
 void loop() {  
   if (Serial.available())
   {
-    pos = Serial.read();
+    //pos = Serial.read();
+    byte b = Serial.read();
     Serial.print("I got: ");
-    Serial.println(pos);
-
-    uint16_t pulselen = map(pos, 0, 180, SERVOMIN, SERVOMAX);
-    pwm.setPWM(servonum, 0, pulselen);
-
-    servonum++;
-    if (servonum > 2) servonum = 0;
+    Serial.println(b);
+    
+    // if the starting token start over counter
+    if (b == 255) {
+      servonum = 0;
+    }
+    
+    // otherwise put servo position in buffer
+    else {
+      servoBuf[servonum] = b;
+      servonum++;
+      
+      if (servonum == BUFSIZE - 1) {
+        for (int i=0; i<BUFSIZE; i++) {
+          uint16_t pulselen = map(b, 0, 180, SERVOMIN, SERVOMAX);
+          pwm.setPWM(i, 0, pulselen);
+        }
+      }
+    }
   }
 }
