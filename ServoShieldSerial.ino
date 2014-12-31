@@ -34,7 +34,7 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // our servo # counter
 uint8_t servonum = 0;
 
-#define BUFSIZE 3
+#define BUFSIZE 2
 
 //int pos;
 volatile byte servoBuf[BUFSIZE];
@@ -81,7 +81,7 @@ void loop() {
       
       if (servonum == BUFSIZE) {
         for (int i=0; i<BUFSIZE; i++) {
-          uint16_t pulselen = map(b, 0, 180, SERVOMIN, SERVOMAX);
+          uint16_t pulselen = map(servoBuf[i], 0, 180, SERVOMIN, SERVOMAX);
           pwm.setPWM(i, 0, pulselen);
         }
       }
