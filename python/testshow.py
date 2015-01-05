@@ -11,4 +11,4 @@ for line in fi:
 	arduino.write(struct.pack('>B', 255))
 	for i in values:
 		arduino.write(struct.pack('>B', i))
-		time.sleep(1)
+	time.sleep(1)
