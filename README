@@ -1,3 +1,11 @@
 Control many servos using Adafruit servo shield over serial.
 
 Make sure to open the Serial Monitor before sending python commands or it won't work.
+
+How it works:
+The Python sends a control byte of 255 followed by n bytes, each of which represents a servo rotation between 0-180.
+The Arduino collects all n bytes, then it updates all servos at once.
+The next byte should be another control byte of 255.
+The reason for the control byte is that if you stop sending data, then reestablish connection, you need a way of telling the Arduino to start over the frame, so you don't end up adding data in the middle of a frame.
+
+If you change the number of servos coming from Python to the Arduino, you must change the BUFSIZE in the Arduino code.
