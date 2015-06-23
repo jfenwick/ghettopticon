@@ -34,7 +34,8 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 // our servo # counter
 uint8_t servonum = 0;
 
-#define BUFSIZE 2
+// Make sure this is set to the correct number of servos and that your python code matches
+#define BUFSIZE 9
 
 //int pos;
 volatile byte servoBuf[BUFSIZE];
