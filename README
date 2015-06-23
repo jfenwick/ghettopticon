@@ -1,4 +1,7 @@
-Control many servos using Adafruit servo shield over serial.
+Cardboard robot.
+Uses Adafruit Servo Shield to run servos.
+Python is used to talk to the Arduino over serial.
+Shows are built using Blender.
 
 Getting Hello World working:
 1. Upload the Arduino code.
