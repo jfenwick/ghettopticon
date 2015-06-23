@@ -2,7 +2,7 @@ Control many servos using Adafruit servo shield over serial.
 
 Getting Hello World working:
 1. Upload the Arduino code.
-2. Open the Serial Monitor. If you don't establish a connection before sending Python commands or it won't work.
+2. Open the Serial Monitor. If you don't establish a connection before sending Python commands it won't work.
 3. Open a terminal and change to the python directory, then run this command:
 4. python 180.py
 This should rotate up to 9 servos back and forth.
