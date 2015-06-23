@@ -1,1 +1,3 @@
 Control many servos using Adafruit servo shield over serial.
+
+Make sure to open the Serial Monitor before sending python commands or it won't work.
